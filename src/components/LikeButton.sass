@@ -1,23 +1,28 @@
 // src/components/LikeButton.sass
-.like button
-  border: 0
-  background: transparent
-  outline: none
-  font-size: 1.5em
+.LikeButton
+  button
+    border: 0
+    background: transparent
+    outline: none
+    font-size: 1.5em
 
-  span.copy
-    position: absolute
-    margin-left: -1em
-    z-index: -1
-    opacity: 0
+    .heart
+      width: 1em
 
-.likes
-  font-size: 0.8em
-  color: #999
+    span.copy
+      position: absolute
+      margin-left: -1em
+      z-index: -1
+      opacity: 0
 
-.liked button span.copy
-  z-index: 9
-  animation: heart 1s 1 ease-in-out
+  .likes
+    font-size: 0.8em
+    color: #999
+
+  &.liked button span.copy
+    z-index: 9
+    animation: heart 1s 1 ease-in-out
+
 
 @keyframes heart
   10%

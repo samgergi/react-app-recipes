@@ -17,6 +17,7 @@
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive"
   },
   "devDependencies": {
+    "breakpoint-sass": "^2.7.1",
     "chai": "3.x",
     "chai-enzyme": "^0.8.0",
     "chai-spies": "^0.7.1",
