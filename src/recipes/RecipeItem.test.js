@@ -4,18 +4,17 @@ import chai, { expect } from 'chai'
 import { shallow } from 'enzyme'
 import chaiEnzyme from 'chai-enzyme'
 import RecipeItem from './RecipeItem'
-import Vegan from '../images/vegan.svg'
-import Vegetarian from '../images/vegetarian.svg'
-import Pescatarian from '../images/pescatarian.svg'
 
 chai.use(chaiEnzyme())
 
 const recipe = {
-    title: 'Spanish Omelette',
-    summary: 'A traditional dish from Spanish cuisine called tortilla española or tortilla de patatas. It is an omelette made with eggs and potatoes, sometimes also with onion and/or chives or garlic; fried in oil and often served cold as an appetizer.',
-    vegan: false,
-    vegetarian: true,
-    pescatarian: false,
+  _id: 'abcd123',
+  title: 'Spanish Omelette',
+  summary: 'A traditional dish from Spanish cuisine called tortilla española or tortilla de patatas. It is an omelette made with eggs and potatoes, sometimes also with onion and/or chives or garlic; fried in oil and often served cold as an appetizer.',
+  vegan: false,
+  vegetarian: true,
+  pescatarian: false,
+  onChange: () => {} // stub
 }
 
 describe('<RecipeItem />', () => {
@@ -28,25 +27,5 @@ describe('<RecipeItem />', () => {
 
   it('contains a the title', () => {
     expect(container.find('h1')).to.have.text(recipe.title)
-  })
-
-  it('shows a 🥕  when it is vegetarian', () => {
-    expect(container.find('ul > li > img')).to.have.attr('src', Vegetarian)
-  })
-
-  it('shows a 🌾  when it is vegan', () => {
-    const container = shallow(<RecipeItem { ...recipe } vegan={true} />)
-    expect(container.find('ul > li > img')).to.have.attr('src', Vegan)
-  })
-
-  it('shows a 🐟  when it is pescatarian', () => {
-    const container = shallow(
-      <RecipeItem
-        { ...recipe }
-        vegetarian={false}
-        pescatarian={true} />
-    )
-
-    expect(container.find('ul > li > img')).to.have.attr('src', Pescatarian)
   })
 })

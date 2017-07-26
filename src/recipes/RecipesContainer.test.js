@@ -11,7 +11,11 @@ import { recipes as dummyData } from '../App'
 chai.use(chaiEnzyme())
 
 describe('<RecipesContainer />', () => {
-  const container = shallow(<RecipesContainer recipes={dummyData} />)
+  const container = shallow(
+    <RecipesContainer
+      updateRecipe={() => {}}
+      recipes={dummyData} />
+  )
 
   it('is wrapped in a div with class name "recipes"', () => {
     expect(container).to.have.className('wrapper')
