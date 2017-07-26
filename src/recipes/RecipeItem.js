@@ -1,13 +1,15 @@
 // src/recipes/RecipeItem.js
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import updateRecipe from '../actions/recipes/update'
 import LikeButton from '../components/LikeButton'
 import RecipeCategory from './RecipeCategory'
 import './RecipeItem.css'
 
 const PLACEHOLDER = 'http://via.placeholder.com/500x180?text=No%20Image'
 
-class RecipeItem extends PureComponent {
+export class RecipeItem extends PureComponent {
   static propTypes = {
     _id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -50,4 +52,4 @@ class RecipeItem extends PureComponent {
   }
 }
 
-export default RecipeItem
+export default connect(null, { onChange: updateRecipe })(RecipeItem)

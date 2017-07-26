@@ -3,19 +3,26 @@ import React from 'react'
 import chai, { expect } from 'chai'
 import { shallow } from 'enzyme'
 import chaiEnzyme from 'chai-enzyme'
-import RecipesContainer from './RecipesContainer'
+import spies from 'chai-spies'
+import {RecipesContainer} from './RecipesContainer'
 import Title from '../components/Title'
 import RecipeItem from './RecipeItem'
-import { recipes as dummyData } from '../App'
+import recipes from '../fixtures/recipes'
 
 chai.use(chaiEnzyme())
+chai.use(spies)
 
 describe('<RecipesContainer />', () => {
+  const seedRecipes = chai.spy()
   const container = shallow(
     <RecipesContainer
-      updateRecipe={() => {}}
-      recipes={dummyData} />
+      seedRecipes={seedRecipes}
+      recipes={recipes} />
   )
+
+  it('calls seedRecipes on willMount', () => {
+    expect(seedRecipes).to.have.been.called.exactly.once()
+  })
 
   it('is wrapped in a div with class name "recipes"', () => {
     expect(container).to.have.className('wrapper')
@@ -31,6 +38,6 @@ describe('<RecipesContainer />', () => {
   })
 
   it('renders all recipes as a RecipeItem', () => {
-    expect(container).to.have.exactly(dummyData.length).descendants(RecipeItem)
+    expect(container).to.have.exactly(recipes.length).descendants(RecipeItem)
   })
 })
